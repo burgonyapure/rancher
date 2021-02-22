@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: tindr
+      tier: frontend
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: tindr
+        tier: frontend
+    spec:
+      containers:
+      - name: tindr
+        image: burgonyapure/tindrfront:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 3000

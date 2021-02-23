@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tindr-backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+      role: master
+      tier: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: master
+        image: burgonyapure/tindrback:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1G
+        ports:
+        - containerPort: 8443
